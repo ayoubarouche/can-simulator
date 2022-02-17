@@ -3,6 +3,31 @@
 #include "includes.h"
 
 #endif // !LIBRARIES
+
+DATA_FIELD get_data_field(char * frame , FRAME_TYPE type) {
+    if(type==STANDARD){
+
+        int datalength = (frame[2] & 0x07)<<4 | frame[1]&0x08 ; 
+    if(!datalength){
+        return NULL ; 
+    }
+    
+    DATA_FIELD data_field= malloc(sizeof(char) * datalength);
+    data_field[0] = frame[2]<<8; 
+    DATA_FIELD result = malloc(sizeof(char)*datalength);
+    for(int i = 1 ; i<datalength ; i++){
+        	data_field[i] = frame[i+2];
+    }
+
+    for( int i = 0 ; i<datalength ;i++){
+        // result[i] = data_field[i]>>
+    }
+    return data_field ; 
+    }
+    else return NULL ;
+    
+
+}
 CAN_STANDARD_FRAME parse_can_standard_frame (char * standard_frame){
 
     // the frame to return : 
@@ -34,26 +59,51 @@ CAN_STANDARD_FRAME parse_can_standard_frame (char * standard_frame){
 
     // data field 
     
+    
 
 
     return parsed_frame;
 
 }
+
+DATA_FIELD shift_array(DATA_FIELD array, int array_length){
+    if(array_length<1){
+        return NULL ;
+    }
+
+   unsigned char bits1 = 0, bits2 = 0;
+for(int i = array_length; i >= 0; --i) {
+    bits2 = array[i] & 0x07;
+    array[i] >>= 3;
+    array[i] |= bits1 << 5;
+    bits1 = bits2;
+}
+    return array ; 
+}
+
+
 typedef union{
     STANDARD_CONTROL_FIELD standard_frame ; 
     unsigned char std_frame:6 ;
 }union_arbitration_field ; 
 int main(){
 
-    union_arbitration_field google  ; 
-    google.std_frame = (char)0x7E;
+    // union_arbitration_field google  ; 
+    // google.std_frame = 0x7E;
 
 
-    char  frame [] = {
-        (char)0x1E , (char)0x10 , (char) 0x35,(char) 0xFF 
+    unsigned char  frame [] = {
+        0xf0 , (char)0x10 , (char) 0x35,(char) 0xFF 
     } ; 
-    printf("the size of control field is : %d \n", sizeof(google));
-    printf("the data length in the frame is : %x\n" ,  google.standard_frame.DLC);
-    printf("the frame is %d" , sizeof(frame));
+
+    DATA_FIELD result = shift_array(frame , 4 );
+
+    // printf("the size of control field is : %d \n", sizeof(google));
+    // printf("the data length in the frame is : %x\n" ,  google.standard_frame.DLC);
+    for(int i= 0 ; i<4 ; i++ ){
+        printf("0x%X " , result[i]);
+    }
+    
+    // printf("the frame is %d" , sizeof(frame));
     return 0 ; 
 }
