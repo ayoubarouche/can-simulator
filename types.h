@@ -5,6 +5,10 @@ typedef enum  {
     true  ,
     false 
 }bool;
+
+typedef enum {
+    STANDARD , EXTENDED 
+}FRAME_TYPE ;
 typedef char *DATA_FIELD;
 typedef struct {
     
