@@ -19,7 +19,8 @@ FRAME_TYPE get_can_frame_type (char * );
 CAN_STANDARD_FRAME parse_can_standard_frame (char * );
 // get the can extended frame 
 CAN_EXTENDED_FRAME parse_can_extended_frame(char *);
-
+//get the data field 
+DATA_FIELD get_data_field(char *);
 // generate a new frame 
  // standard frame 
 CAN_STANDARD_FRAME generate_can_standard_frame(int number_of_bytes_in_data_field);
