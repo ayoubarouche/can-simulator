@@ -13,7 +13,7 @@
 void show_the_default_frame_parts();
 // function parse the frame : 
 // function to get the frame type : 
-void get_can_frame_type (char * );
+FRAME_TYPE get_can_frame_type (char * );
 
 // get the can standard frame 
 CAN_STANDARD_FRAME parse_can_standard_frame (char * );
