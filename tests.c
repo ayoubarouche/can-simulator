@@ -1,5 +1,9 @@
-#include <stdio.h>
-#include "types.h"
+#ifndef LIBRARIES
+
+#include "includes.h"
+
+#endif // !LIBRARIES
+
 int main(){
 
     CAN_STANDARD_FRAME frame ;

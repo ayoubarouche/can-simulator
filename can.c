@@ -1,9 +1,9 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include "types.h"
-#include "can.h"
+#ifndef LIBRARIES
 
-#pragma pack(1)
+#include "includes.h"
+
+#endif // !LIBRARIES
+
 
 int main(){
     printf("hello world");

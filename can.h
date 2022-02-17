@@ -1,14 +1,9 @@
-#ifndef H_STANDARD_LIBRARIES
+#ifndef LIBRARIES
 
-#include <stdlib.h>
-#include <stdio.h>
+#include "includes.h"
 
-#endif
-#ifndef _H_CAN_TYPES
+#endif // !LIBRARIES
 
-#include "types.h"
-
-#endif
 //function to show the frame :
 void show_the_default_frame_parts();
 // function parse the frame : 
