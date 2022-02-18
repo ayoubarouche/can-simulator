@@ -58,7 +58,22 @@ CAN_STANDARD_FRAME parse_can_standard_frame (char * standard_frame){
     parsed_frame.CAN_CONTROL = control_field ; 
 
     // data field 
+    parsed_frame.CAN_DATA = get_data_field(standard_frame , STANDARD);
+
+    // crc field : 
+
+    CRC_FIELD crc_field  ; 
+
+    int data_length = get_data_length(standard_frame);
+     
+     // detect the crc field : 
+
+    int crc_place = (19+data_length*8)/8 ;
     
+
+    
+
+
     
 
 
